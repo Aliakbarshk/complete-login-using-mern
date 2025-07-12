@@ -1,30 +1,38 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [Broute, setBroute] = useState("");
   const navigate = useNavigate();
-
+  // alert(
+  //   "Note: Don't enter your real email or password. This is just a practice project."
+  // );
   const handleSubmit = (e) => {
-    e.preventDefault();
-
     if (!name || !email || !password) {
       alert("Please fill all the fields");
       return;
     }
 
+    console.log("😏");
+
+    // console.log(Name: ${name}, Email: ${email}, Password: ${password});
+
+    e.preventDefault();
     axios
       .post("https://sign-in-login-backend.onrender.com/register", {
         name,
         email,
         password,
       })
-      .then(() => navigate("/dashboard"))
-      .catch(() => alert("Registration failed. Try again."));
+      .then((result) => console.log(result))
+      .catch((result) => console.log("error"));
+      navigate("/dashboard");
   };
 
   return (
@@ -36,6 +44,7 @@ const SignIn = () => {
       >
         <h3 className="text-center mb-4">Sign Up</h3>
 
+        {/* Name Field */}
         <div className="mb-3">
           <input
             type="text"
@@ -46,6 +55,7 @@ const SignIn = () => {
           />
         </div>
 
+        {/* Email Field */}
         <div className="mb-3">
           <input
             type="email"
@@ -56,6 +66,7 @@ const SignIn = () => {
           />
         </div>
 
+        {/* Password Field */}
         <div className="mb-3">
           <input
             type="password"
@@ -71,7 +82,7 @@ const SignIn = () => {
         </button>
 
         <p className="text-center mt-3 mb-0">
-          Already have an account? <Link to="/login">Login</Link>
+          Already have an account? <a href="/login">Login</a>
         </p>
       </form>
     </div>
