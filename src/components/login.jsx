@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail]       = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -54,6 +54,11 @@ const Login = () => {
 
         <p className="text-center mt-3 mb-0">
           Don’t have an account? <a href="/register">Sign up</a>
+        </p>
+
+        <p style={{ color: "red", fontSize: "14px" }} className="mb-3">
+          ⚠️ Server runs on a free tier and may sleep when inactive. If login
+          doesn’t work right away, please wait a few seconds and try again.
         </p>
       </form>
     </div>
